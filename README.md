@@ -12,6 +12,17 @@ npm run dev      # abre em http://localhost:3000
 npm run build    # confere se está tudo certo antes de publicar
 ```
 
+## Painel de ADM
+
+O painel fica em `/admin` (entrada por `/admin/entrar` ou pelo link "adm" no rodapé da tela de loja fechada).
+Nele dá para cadastrar e editar peças, drops e páginas do lookbook, subir fotos e fechar a loja enquanto um drop é montado.
+
+Para o login funcionar, copie o `.env.example` para `.env.local` e preencha `ADMIN_EMAIL`, `ADMIN_SENHA` e `ADMIN_SEGREDO`.
+O `.env.local` nunca vai para o GitHub.
+
+Os dados editados no painel ficam em `dados/loja.json` e as fotos enviadas em `dados/fotos/`.
+Na Vercel o disco não guarda arquivos, então para publicar é preciso trocar esse armazenamento por um banco de dados (ver `src/lib/armazem.ts`).
+
 ## Onde editar cada coisa
 
 | O quê | Arquivo |
