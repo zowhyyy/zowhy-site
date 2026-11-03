@@ -13,9 +13,9 @@ export function LojaFechada({ aviso }: { aviso: AvisoLoja }) {
     <main className="relative isolate grid min-h-dvh place-items-center overflow-hidden px-4 py-16">
       <div className="grade absolute inset-0 -z-20" aria-hidden="true" />
       {/* Manchas de cor atrás do vidro */}
-      <span className="mancha absolute top-[8%] left-[12%] -z-10 h-[38vmax] w-[38vmax] rounded-full bg-vinho/70 blur-[90px]" aria-hidden="true" />
+      <span className="mancha mancha-vinho absolute top-[calc(8%-7vmax)] left-[calc(12%-7vmax)] -z-10 h-[52vmax] w-[52vmax]" aria-hidden="true" />
       <span
-        className="mancha absolute right-[6%] bottom-[4%] -z-10 h-[30vmax] w-[30vmax] rounded-full bg-[#c9ccd3] blur-[80px]"
+        className="mancha mancha-cinza absolute right-[calc(6%-6vmax)] bottom-[calc(4%-6vmax)] -z-10 h-[42vmax] w-[42vmax]"
         style={{ animationDelay: "-6s" }}
         aria-hidden="true"
       />

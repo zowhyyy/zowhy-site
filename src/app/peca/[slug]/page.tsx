@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BotaoCompartilhar } from "@/components/BotaoCompartilhar";
 import { BotaoSacola } from "@/components/BotaoSacola";
 import { CardPeca } from "@/components/CardPeca";
 import { Galeria } from "@/components/Galeria";
@@ -16,7 +17,10 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const peca = buscarPeca((await lerDados()).produtos, (await params).slug);
   if (!peca) return {};
-  return { title: `${peca.nome} ${peca.marca}`, description: peca.descricao.split("\n")[0] };
+  const title = `${peca.nome} ${peca.marca}`;
+  const description = peca.descricao.split("\n")[0];
+  // Com foto real, é ela que aparece ao compartilhar a peça; sem foto, fica a imagem geral do site.
+  return { title, description, ...(peca.fotos[0] && { openGraph: { title, description, images: [peca.fotos[0]] } }) };
 }
 
 function Acordeao({ titulo, aberto = false, children }: { titulo: string; aberto?: boolean; children: React.ReactNode }) {
@@ -69,7 +73,13 @@ export default async function PaginaPeca({ params }: Props) {
             </>
           )}
           <span aria-hidden="true">/</span>
-          <span className="text-grafite">{rotuloCategoria[peca.categoria]}</span>
+          <Link href={`/loja?categoria=${peca.categoria}`} className="transition-colors hover:text-vinho">
+            {rotuloCategoria[peca.categoria]}
+          </Link>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page" className="text-grafite">
+            {peca.nome}
+          </span>
         </nav>
 
         <div className="mt-4 grid gap-10 md:grid-cols-[1.15fr_1fr] lg:gap-16">
@@ -134,6 +144,9 @@ export default async function PaginaPeca({ params }: Props) {
               <IconeInstagram className="h-4 w-4" />
               Perguntar sobre esta peça na DM
             </a>
+            <div>
+              <BotaoCompartilhar titulo={`${peca.nome} ${peca.marca}`} />
+            </div>
 
             <div className="mt-7 border-t border-linha">
               <Acordeao titulo="Sobre a peça" aberto>
@@ -227,7 +240,7 @@ export default async function PaginaPeca({ params }: Props) {
               <p className="mono text-[0.55rem] text-suave">Peça única · {peca.tamanho}</p>
               <p className="preco mt-0.5">{formatarPreco(peca.preco)}</p>
             </div>
-            <div className="flex flex-1 flex-col">
+            <div className="barra-compra flex min-w-0 flex-1 flex-col">
               <BotaoSacola slug={peca.slug} situacao={peca.situacao} />
             </div>
           </div>

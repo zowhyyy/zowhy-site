@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FormularioConta } from "@/components/FormularioConta";
 import { loja } from "@/data/config-loja";
 
-export const metadata: Metadata = { title: "Entrar" };
+export const metadata: Metadata = { title: "Entrar", robots: { index: false } };
 
 export default function Entrar() {
   return (

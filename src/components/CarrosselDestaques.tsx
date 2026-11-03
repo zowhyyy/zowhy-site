@@ -213,7 +213,7 @@ export function CarrosselDestaques() {
                                 </span>
                                 <span className="flex min-w-0 flex-col px-0.5 pb-0.5">
                                   <span className="truncate text-[0.72rem] leading-tight font-medium">{p.nome}</span>
-                                  <span className={vendida ? "text-[0.68rem] text-suave" : "preco text-[0.66rem]"}>
+                                  <span className={vendida ? "text-[0.68rem] text-suave" : "preco text-[0.58rem] whitespace-nowrap"}>
                                     {vendida ? "Vendida" : formatarPreco(p.preco)}
                                   </span>
                                 </span>

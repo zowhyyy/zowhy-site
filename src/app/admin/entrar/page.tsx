@@ -10,7 +10,7 @@ export default async function EntrarAdm() {
   if (await ehAdm()) redirect("/admin");
   return (
     <div className="grid min-h-dvh place-items-center py-10">
-      <span className="mancha fixed top-[10%] left-[8%] -z-10 h-[34vmax] w-[34vmax] rounded-full bg-vinho/60 blur-[90px]" aria-hidden="true" />
+      <span className="mancha mancha-vinho fixed top-[calc(10%-6vmax)] left-[calc(8%-6vmax)] -z-10 h-[46vmax] w-[46vmax]" aria-hidden="true" />
       <section className="vidro entrar w-full max-w-md rounded-[30px] px-6 py-9 sm:px-10">
         <p className="logo text-[1.25rem]">
           {loja.nome}

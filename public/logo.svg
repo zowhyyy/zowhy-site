@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="fundo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a42f45"/>
+      <stop offset="0.55" stop-color="#822434"/>
+      <stop offset="1" stop-color="#4d1520"/>
+    </linearGradient>
+    <linearGradient id="cromo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.45" stop-color="#e8e8ec"/>
+      <stop offset="0.55" stop-color="#b9bcc4"/>
+      <stop offset="0.7" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#d4d6db"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#fundo)"/>
+  <rect x="1" y="1" width="62" height="62" rx="14" fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="2"/>
+  <!-- Z largo em cromo -->
+  <path d="M11 13H53V23.5L29 41H53V51H11V40.5L35 23H11Z" fill="url(#cromo)"/>
+  <!-- Corte de faca atravessando a letra -->
+  <path d="M2 47 62 15 6 50Z" fill="#822434"/>
+</svg>

@@ -18,10 +18,7 @@ const links = [
 
 const ativo = (pathname: string, href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
-/**
- * Logo provisória. O espaço tem tamanho fixo (150 × 28 px no computador):
- * para usar a logo definitiva, troque o <span> por um <Image> e a navbar não muda.
- */
+/** Nome da loja no menu. O espaço tem tamanho fixo (150 × 28 px no computador). */
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link href="/" aria-label={`${loja.nome}, início`} className={`flex h-7 w-[7.5rem] shrink-0 items-center sm:w-[9.4rem] ${className}`}>
@@ -73,14 +70,16 @@ export function Cabecalho() {
 
         <div className="ml-auto flex items-center lg:ml-0">
           <Busca />
-          <Link
-            href="/entrar"
-            className="icone-nav max-lg:hidden"
-            aria-label="Minha conta"
-            aria-current={pathname.startsWith("/entrar") ? "page" : undefined}
-          >
-            <IconeConta className="h-5 w-5" />
-          </Link>
+          {loja.contasAtivas && (
+            <Link
+              href="/entrar"
+              className="icone-nav max-lg:hidden"
+              aria-label="Minha conta"
+              aria-current={pathname.startsWith("/entrar") ? "page" : undefined}
+            >
+              <IconeConta className="h-5 w-5" />
+            </Link>
+          )}
           <button
             type="button"
             onClick={abrirGaveta}
@@ -121,10 +120,12 @@ export function Cabecalho() {
                 </li>
               ))}
             </ul>
-            <div className="mt-5 grid grid-cols-2 gap-2">
-              <Link href="/entrar" className="btn">
-                Entrar
-              </Link>
+            <div className={`mt-5 grid gap-2 ${loja.contasAtivas ? "grid-cols-2" : ""}`}>
+              {loja.contasAtivas && (
+                <Link href="/entrar" className="btn">
+                  Entrar
+                </Link>
+              )}
               <button type="button" onClick={abrirGaveta} className="btn btn-cheio">
                 Sacola{pronto && quantidade > 0 ? ` · ${quantidade}` : ""}
               </button>

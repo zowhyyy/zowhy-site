@@ -130,6 +130,15 @@ export function IconeProximo({ className }: Props) {
   );
 }
 
+export function IconeCompartilhar({ className }: Props) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M12 15V4M8 8l4-4 4 4" />
+      <path d="M6 12H5v8h14v-8h-1" />
+    </svg>
+  );
+}
+
 export function IconeFiltro({ className }: Props) {
   return (
     <svg {...base} className={className}>

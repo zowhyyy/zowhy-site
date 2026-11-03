@@ -1014,8 +1014,6 @@ button:hover .sacola-icone {
   position: absolute;
   inset: 0;
   background: rgb(37 32 29 / 0.28);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -1030,14 +1028,19 @@ button:hover .sacola-icone {
   width: min(430px, calc(100% - 1.2rem));
   border-radius: 28px;
   background: linear-gradient(160deg, rgb(255 255 255 / 0.92), rgb(255 255 255 / 0.78));
-  -webkit-backdrop-filter: blur(28px) saturate(1.7);
-  backdrop-filter: blur(28px) saturate(1.7);
   border: 1px solid rgb(255 255 255 / 0.9);
   box-shadow: 0 30px 60px -30px rgb(37 32 29 / 0.6);
   transform: translateX(calc(100% + 1rem));
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
+/* O vidro da gaveta só existe aberta: fechada, ela não custa nada */
+.gaveta-aberta .gaveta-painel {
+  -webkit-backdrop-filter: blur(28px) saturate(1.7);
+  backdrop-filter: blur(28px) saturate(1.7);
+}
 .gaveta-aberta .gaveta-fundo {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   opacity: 1;
 }
 .gaveta-aberta .gaveta-painel {
@@ -1327,9 +1330,61 @@ button:hover .sacola-icone {
     background: rgb(130 36 52 / 0.12);
   }
 }
+/* Botão de compartilhar a peça: pílula de vidro; o círculo vinho gira de leve no hover */
+.compartilhar {
+  color: var(--color-grafite);
+  transition:
+    translate 0.3s var(--curva),
+    color 0.3s ease;
+}
+.compartilhar-icone {
+  transition: rotate 0.3s var(--curva);
+}
+@media (hover: hover) {
+  .compartilhar:hover {
+    translate: 0 -2px;
+    color: var(--color-vinho);
+  }
+  .compartilhar:hover .compartilhar-icone {
+    rotate: -12deg;
+  }
+}
+.compartilhar:active {
+  translate: 0 0;
+}
+/* Aviso de cookies: sobe da borda de baixo */
+.aviso-cookies {
+  animation: cookies-subir 0.5s var(--curva) both;
+}
+@keyframes cookies-subir {
+  from {
+    opacity: 0;
+    translate: 0 20px;
+  }
+}
+/* Tela de carregamento: só surge se a página passar de meio segundo */
+.carregando-tela {
+  animation: carregando-surgir 0.3s ease 0.5s both;
+}
+@keyframes carregando-surgir {
+  from {
+    opacity: 0;
+  }
+}
 /* Bolhas de vidro: sobem, descem e "respiram" em tempos diferentes */
 .bolha {
   animation: bolha 4.8s ease-in-out infinite;
+}
+/* Só as bolhas do slide que está na tela se movem */
+.slide:not(.slide-ativo) .bolha {
+  animation: none;
+}
+/* Manchas de cor: gradiente puro, sem filtro de desfoque */
+.mancha-vinho {
+  background: radial-gradient(closest-side, rgb(130 36 52 / 0.72) 28%, rgb(130 36 52 / 0));
+}
+.mancha-cinza {
+  background: radial-gradient(closest-side, #c9ccd3 28%, rgb(201 204 211 / 0));
 }
 @keyframes bolha {
   0%,
@@ -1711,4 +1766,34 @@ button:hover .sacola-icone {
   .sacudir {
     animation: sacudir 0.5s ease;
   }
+}
+
+/* ── Modo leve ────────────────────────────────────────────────────
+   Ligado no <html> (data-leve) em aparelhos fracos ou quando o site está
+   rodando devagar (ver ModoLeve.tsx). Troca o vidro por branco quase
+   opaco e corta o que mais pesa; os letreiros e o resto continuam. */
+html[data-leve] * {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html[data-leve] .vidro:not(.bolha),
+html[data-leve] .gaveta-painel {
+  background: rgb(255 255 255 / 0.93);
+}
+html[data-leve] .vidro-escuro {
+  background: rgb(37 32 29 / 0.86);
+}
+html[data-leve] .bolha,
+html[data-leve] .mancha {
+  animation: none;
+}
+html[data-leve] .grao::after {
+  display: none;
+}
+
+/* Barra fixa de compra no celular: o botão cabe até nas telas de 320px */
+.barra-compra .btn {
+  padding: 0 0.75rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
 }

@@ -37,7 +37,6 @@ export function BarraRolagem() {
 
     function atualizar() {
       quadro = 0;
-      posicionarTopo();
       const m = medidas();
       a.hidden = m.maxScroll <= 1;
       if (a.hidden) return;
@@ -77,20 +76,27 @@ export function BarraRolagem() {
       a.classList.remove("barra-arrastando");
     }
 
-    const observador = new ResizeObserver(agendar);
+    /** O topo só muda quando o layout muda; rolar a página não mexe nele. */
+    function aoMudarLayout() {
+      posicionarTopo();
+      agendar();
+    }
+
+    const observador = new ResizeObserver(aoMudarLayout);
     observador.observe(document.body);
     window.addEventListener("scroll", aoRolar, { passive: true });
-    window.addEventListener("resize", agendar);
+    window.addEventListener("resize", aoMudarLayout);
     p.addEventListener("pointerdown", pegar);
     p.addEventListener("pointermove", arrastar);
     p.addEventListener("pointerup", soltar);
     p.addEventListener("pointercancel", soltar);
+    posicionarTopo();
     atualizar();
 
     return () => {
       observador.disconnect();
       window.removeEventListener("scroll", aoRolar);
-      window.removeEventListener("resize", agendar);
+      window.removeEventListener("resize", aoMudarLayout);
       p.removeEventListener("pointerdown", pegar);
       p.removeEventListener("pointermove", arrastar);
       p.removeEventListener("pointerup", soltar);

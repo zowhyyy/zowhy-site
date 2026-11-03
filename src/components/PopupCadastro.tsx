@@ -173,12 +173,14 @@ export function PopupCadastro() {
             </div>
           )}
 
-          <p className="mt-auto pt-2 text-sm text-[#5a5450]">
-            Já tem conta?{" "}
-            <Link href="/entrar" className="link" onClick={() => setAberto(false)}>
-              Entrar
-            </Link>
-          </p>
+          {loja.contasAtivas && (
+            <p className="mt-auto pt-2 text-sm text-[#5a5450]">
+              Já tem conta?{" "}
+              <Link href="/entrar" className="link" onClick={() => setAberto(false)}>
+                Entrar
+              </Link>
+            </p>
+          )}
         </div>
       </div>
     </>

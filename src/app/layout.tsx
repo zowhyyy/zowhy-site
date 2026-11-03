@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif, Syncopate } from "next/font/google";
+import { AvisoCookies } from "@/components/AvisoCookies";
 import { BalaoInstagram } from "@/components/BalaoInstagram";
 import { BarraAvisos } from "@/components/BarraAvisos";
 import { BarraRolagem } from "@/components/BarraRolagem";
@@ -9,6 +10,7 @@ import { Efeitos } from "@/components/Efeitos";
 import { FaixaAdm } from "@/components/FaixaAdm";
 import { GavetaSacola } from "@/components/GavetaSacola";
 import { LojaFechada } from "@/components/LojaFechada";
+import { ModoLeve } from "@/components/ModoLeve";
 import { MolduraSite } from "@/components/MolduraSite";
 import { PopupCadastro } from "@/components/PopupCadastro";
 import { Rodape } from "@/components/Rodape";
@@ -16,6 +18,7 @@ import { SacolaProvider } from "@/components/SacolaProvider";
 import { Transicao } from "@/components/Transicao";
 import { loja } from "@/data/config-loja";
 import { lerDados } from "@/lib/armazem";
+import { urlSite } from "@/lib/site";
 import { ehAdm } from "@/lib/sessao";
 import "./globals.css";
 
@@ -35,13 +38,22 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(urlSite),
   title: { default: `${loja.nome} · brechó online`, template: `%s · ${loja.nome}` },
   description: "Brechó online com peças únicas: vintage, grife e básicos. Novidades em drops.",
+  openGraph: { siteName: loja.nome, locale: "pt_BR", type: "website" },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
+
+/**
+ * Roda antes de desenhar a página: marca que há JavaScript e já liga o modo leve em aparelho
+ * muito fraco, com economia de dados ou que já ficou lento nesta visita (ver ModoLeve.tsx).
+ */
+const marcarAparelho = `(function(){var h=document.documentElement,n=navigator,l=false;h.dataset.js='1';try{l=sessionStorage.getItem('zowhy-leve')==='1'}catch(e){}if(l||(n.hardwareConcurrency||8)<=2||(n.deviceMemory||8)<=2||(n.connection&&n.connection.saveData))h.dataset.leve='1'})()`;
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const [dados, adm] = await Promise.all([lerDados(), ehAdm()]);
@@ -54,7 +66,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.dataset.js='1'" }} />
+        <script dangerouslySetInnerHTML={{ __html: marcarAparelho }} />
       </head>
       <body className="flex min-h-dvh flex-col overflow-x-clip antialiased">
         <CatalogoProvider produtos={dados.produtos} drops={dados.drops}>
@@ -84,6 +96,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </MolduraSite>
           </SacolaProvider>
         </CatalogoProvider>
+        <AvisoCookies />
+        <ModoLeve />
         <BarraRolagem />
         <Efeitos />
       </body>
