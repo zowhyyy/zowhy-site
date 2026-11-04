@@ -67,7 +67,7 @@ export default async function PaginaPeca({ params }: Props) {
           {drop && (
             <>
               <span aria-hidden="true">/</span>
-              <Link href={`/drops#${drop.slug}`} className="transition-colors hover:text-vinho">
+              <Link href={`/loja?drop=${drop.slug}`} className="transition-colors hover:text-vinho">
                 Drop {numeroDrop(drop.numero)}
               </Link>
             </>
@@ -218,7 +218,7 @@ export default async function PaginaPeca({ params }: Props) {
               <span className="disp text-[clamp(1.8rem,4vw,2.75rem)]">Mais do</span>{" "}
               <span className="titulo text-[clamp(2.6rem,5vw,3.75rem)] text-vinho">Drop {numeroDrop(drop.numero)}</span>
             </h2>
-            <Link href={`/drops#${drop.slug}`} className="link mb-1">
+            <Link href={`/loja?drop=${drop.slug}`} className="link mb-1">
               Ver o drop inteiro →
             </Link>
           </div>

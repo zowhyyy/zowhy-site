@@ -87,7 +87,7 @@ export default async function Inicio() {
             return (
               <Revelar key={d.slug} className={layout}>
                 <article className={`flex flex-col gap-5 ${esgotado ? "grayscale" : ""}`}>
-                  <Link href={`/drops#${d.slug}`} className="metal flex h-14 items-center justify-between rounded-[2px] px-4 transition-transform duration-500 hover:-translate-y-0.5">
+                  <Link href={esgotado ? "/loja" : `/loja?drop=${d.slug}`} className="metal flex h-14 items-center justify-between rounded-[2px] px-4 transition-transform duration-500 hover:-translate-y-0.5">
                     <span className="disp text-lg">Drop_{numeroDrop(d.numero)}</span>
                     <span className="mono text-[#5a5450]">
                       {formatarData(d.data)}
@@ -148,8 +148,8 @@ export default async function Inicio() {
           })}
           <Revelar className="flex flex-col gap-5 self-start md:col-span-5 md:col-start-8 md:mt-28">
             <p className="titulo text-[2.5rem] leading-[1.05]">“Quando alguém compra, ela sai da loja.”</p>
-            <Link href="/drops" className="btn self-start">
-              Todos os drops <IconeProximo className="h-4 w-4" />
+            <Link href="/loja" className="btn self-start">
+              Ver a loja <IconeProximo className="h-4 w-4" />
             </Link>
           </Revelar>
         </div>

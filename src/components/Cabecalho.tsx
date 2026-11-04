@@ -10,7 +10,6 @@ import { useSacola } from "./SacolaProvider";
 
 const links = [
   { href: "/loja", rotulo: "Loja" },
-  { href: "/drops", rotulo: "Drops" },
   { href: "/lookbook", rotulo: "Lookbook" },
   { href: "/sobre", rotulo: "Sobre" },
   { href: "/como-comprar", rotulo: "Como comprar" },

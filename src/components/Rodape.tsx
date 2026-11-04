@@ -20,7 +20,6 @@ export function Rodape() {
           <ul className="mt-5 flex flex-col gap-2.5">
             {[
               ["/loja", "Todas as peças"],
-              ["/drops", "Drops"],
               ["/lookbook", "Lookbook"],
               ["/como-comprar", "Como comprar"],
               ["/como-comprar#trocas", "Trocas e devoluções"],
