@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BotaoEmail } from "@/components/BotaoEmail";
 import { Revelar } from "@/components/Revelar";
 import { loja } from "@/data/config-loja";
 
@@ -68,9 +69,7 @@ export default function Sobre() {
             <a href={loja.dmUrl} target="_blank" rel="noopener noreferrer" className="btn btn-cheio">
               Mandar DM no Instagram
             </a>
-            <a href={`mailto:${loja.email}`} className="btn">
-              Enviar e-mail
-            </a>
+            <BotaoEmail className="btn">Enviar e-mail</BotaoEmail>
           </div>
           <p className="text-sm text-suave">
             Não temos loja física. Todas as vendas são pelo site, com envio pelos Correios para todo o Brasil.{" "}

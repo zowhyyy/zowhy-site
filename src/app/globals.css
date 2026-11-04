@@ -1129,12 +1129,29 @@ button:hover .sacola-icone {
   z-index: 1;
   transition: none;
 }
-.slide .slide-foto {
-  clip-path: inset(0 0 0 100%);
-  transition: clip-path 1.1s var(--curva);
+/* A foto entra pela direita como uma cortina: a moldura anda para um lado e o miolo para o outro,
+   então a imagem fica parada e só a borda se move. Tudo em transform, que a placa de vídeo faz sozinha.
+   A foto que sai fica parada embaixo até ser coberta. */
+.slide .slide-foto,
+.slide .slide-foto-miolo {
+  will-change: transform;
+  transition: transform 0s linear 1.1s;
 }
-.slide-ativo .slide-foto {
-  clip-path: inset(0);
+.slide .slide-foto {
+  transform: translateX(100%);
+}
+.slide .slide-foto-miolo {
+  transform: translateX(-100%);
+}
+.slide-ativo .slide-foto,
+.slide-ativo .slide-foto-miolo {
+  transform: translateX(0);
+  transition: transform 1.1s var(--curva);
+}
+/* Grão sem mistura de cores aqui: a mistura seria refeita a cada quadro do zoom */
+.slide-foto.grao::after {
+  mix-blend-mode: normal;
+  opacity: 0.1;
 }
 .slide .colagem-peca {
   opacity: 0;
@@ -1205,9 +1222,7 @@ button:hover .sacola-icone {
   width: 0.5rem;
   height: 0.5rem;
   background: rgb(255 255 255 / 0.35);
-  transition:
-    width 0.45s var(--curva),
-    background 0.3s ease;
+  transition: background 0.3s ease;
 }
 .ponto:hover > span {
   background: rgb(255 255 255 / 0.7);
@@ -1401,10 +1416,11 @@ button:hover .sacola-icone {
 
 /* Zoom lento na foto do look ativo */
 .slide-zoom {
-  transition: transform 10s linear;
+  transition: transform 0s linear 1.1s;
 }
 .slide-ativo .slide-zoom {
   transform: scale(1.06);
+  transition: transform 10s linear;
 }
 
 /* Versões para controles sobre vidro claro (lookbook) */

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { loja } from "@/data/config-loja";
+import { BotaoEmail } from "./BotaoEmail";
 
 export function Rodape() {
   const { parcelasSemJuros, parcelamentoMinimo } = loja.pagamento;
@@ -43,9 +44,7 @@ export function Rodape() {
               </a>
             </li>
             <li>
-              <a className="transition-colors hover:text-white" href={`mailto:${loja.email}`}>
-                {loja.email}
-              </a>
+              <BotaoEmail className="transition-colors hover:text-white">{loja.email}</BotaoEmail>
             </li>
           </ul>
           <p className="mt-6 text-sm text-metal">

@@ -95,7 +95,7 @@ export default function ComoComprar() {
         </Revelar>
 
         <Revelar>
-          <section id="trocas" className="metal flex h-full flex-col gap-4 rounded-[2px] p-8">
+          <section id="trocas" className="vidro flex h-full flex-col gap-4 rounded-[26px] p-8">
             <p className="mono text-vinho">Trocas e devoluções</p>
             <h2 className="titulo text-[2.8rem]">7 dias para devolver</h2>
             <ul className="mt-4 space-y-3 leading-relaxed">

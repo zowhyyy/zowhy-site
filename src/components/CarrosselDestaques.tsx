@@ -49,6 +49,13 @@ export function CarrosselDestaques() {
     [total],
   );
 
+  // Deixa as fotos prontas na memória: decodificar na hora da troca causaria um tranco
+  useEffect(() => {
+    document.querySelectorAll<HTMLImageElement>(".slide-zoom").forEach((foto) => {
+      foto.decode().catch(() => {});
+    });
+  }, []);
+
   // Pausa só quando a aba do navegador não está visível
   useEffect(() => {
     const vis = () => setOculto(document.hidden);
@@ -133,6 +140,7 @@ export function CarrosselDestaques() {
               >
                 {/* Foto do look em tela cheia */}
                 <div className={`slide-foto foto-editorial grao cantos absolute inset-0 text-white/70 ${d.imagem ? "" : tons[i % tons.length]}`}>
+                  <div className="slide-foto-miolo absolute inset-0 grid place-items-center">
                   {d.imagem ? (
                     <Image
                       src={d.imagem}
@@ -142,6 +150,7 @@ export function CarrosselDestaques() {
                       className="slide-zoom object-cover"
                       style={{ objectPosition: d.posicao ?? "center" }}
                       priority={i === 0}
+                      loading={i === 0 ? undefined : "eager"}
                     />
                   ) : (
                     <span className="foto-editorial-rotulo">
@@ -152,6 +161,7 @@ export function CarrosselDestaques() {
                   )}
                   {/* Escurece de leve o lado do painel para o vidro ler bem sobre qualquer foto */}
                   <span className="absolute inset-0 z-[1] bg-gradient-to-t from-black/45 via-transparent to-transparent sm:bg-gradient-to-l sm:from-black/35 sm:via-transparent" aria-hidden="true" />
+                  </div>
                 </div>
 
                 {/* Bolhas de vidro decorativas, flutuando */}
