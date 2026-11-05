@@ -428,6 +428,38 @@ body {
   min-width: 2.9rem;
   padding: 0.45rem 0.6rem 0.4rem;
   border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  transform-origin: top left;
+  animation: etiqueta-balanco 5s ease-in-out infinite;
+}
+/* Brilho de metal atravessando a etiqueta */
+.etiqueta-corpo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 0.8) 50%, transparent 65%);
+  transform: translateX(-120%);
+  animation: brilho-metal 5s ease-in-out infinite;
+  pointer-events: none;
+}
+/* Cada card balança em um tempo diferente */
+li:nth-child(2n) .etiqueta-corpo,
+li:nth-child(2n) .etiqueta-corpo::after {
+  animation-delay: -1.7s;
+}
+li:nth-child(3n) .etiqueta-corpo,
+li:nth-child(3n) .etiqueta-corpo::after {
+  animation-delay: -3.3s;
+}
+@keyframes etiqueta-balanco {
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg) translateY(1px);
+  }
 }
 .etiqueta-tamanho {
   font-family: var(--font-display);
@@ -1800,7 +1832,9 @@ html[data-leve] .vidro-escuro {
   background: rgb(37 32 29 / 0.86);
 }
 html[data-leve] .bolha,
-html[data-leve] .mancha {
+html[data-leve] .mancha,
+html[data-leve] .etiqueta-corpo,
+html[data-leve] .etiqueta-corpo::after {
   animation: none;
 }
 html[data-leve] .grao::after {
