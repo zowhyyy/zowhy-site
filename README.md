@@ -12,6 +12,19 @@ npm run dev      # abre em http://localhost:3000
 npm run build    # confere se está tudo certo antes de publicar
 ```
 
+## Abrir em outro computador
+
+```bash
+git clone https://github.com/zowhyyy/zowhy-site.git
+cd zowhy-site
+npm install
+```
+
+1. Copie o `.env.example` para `.env.local` e preencha com os mesmos dados do computador principal. Esse arquivo guarda a senha do ADM e nunca vai para o GitHub.
+2. Rode `npm run dev` e abra http://localhost:3000/admin/entrar. O painel não aparece no menu do site.
+
+Se o projeto já estiver no computador, use `git pull` para pegar a versão mais nova. Fotos enviadas pelo painel ficam só no computador onde foram enviadas (`dados/fotos/`).
+
 ## Painel de ADM
 
 O painel fica em `/admin` (entrada por `/admin/entrar` ou pelo link "adm" no rodapé da tela de loja fechada).
