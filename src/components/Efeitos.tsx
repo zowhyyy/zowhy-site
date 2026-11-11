@@ -86,7 +86,7 @@ export function Efeitos() {
     // o trecho mais velho afina e desbota até desaparecer, e a parte perto da faca continua inteira.
     // Só começa depois de alguns pixels de arrasto (um clique parado continua sendo só o jorro acima).
     const PX = 3; // tamanho de cada "pixel" do corte, em px da tela
-    const VIDA = 600; // quanto tempo (ms) cada pedaço do corte dura até sumir
+    const VIDA = 260; // quanto tempo (ms) cada pedaço do corte dura até sumir: menos tempo, rastro mais curto
     type Ponto = { x: number; y: number; t: number };
     type Corte = { pontos: Ponto[] };
     // Gotas: num canvas à parte, com pixel menor (2 px), para ficarem pequenas.

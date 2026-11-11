@@ -7,6 +7,7 @@ import { loja } from "@/data/config-loja";
 import { Busca } from "./Busca";
 import { IconeConta, IconeFechar, IconeMenu, IconeSacola } from "./Icones";
 import { useSacola } from "./SacolaProvider";
+import { TocadorMusica } from "./TocadorMusica";
 
 const links = [
   { href: "/loja", rotulo: "Loja" },
@@ -68,6 +69,7 @@ export function Cabecalho() {
         </nav>
 
         <div className="ml-auto flex items-center lg:ml-0">
+          <TocadorMusica className="mr-1 max-lg:absolute max-lg:top-1/2 max-lg:left-[3.1rem] max-lg:-translate-y-1/2" />
           <Busca />
           {loja.contasAtivas && (
             <Link

@@ -6,6 +6,7 @@ import { BarraAvisos } from "@/components/BarraAvisos";
 import { BarraRolagem } from "@/components/BarraRolagem";
 import { Cabecalho } from "@/components/Cabecalho";
 import { CatalogoProvider } from "@/components/CatalogoProvider";
+import { CursorVidro } from "@/components/CursorVidro";
 import { Efeitos } from "@/components/Efeitos";
 import { FaixaAdm } from "@/components/FaixaAdm";
 import { GavetaSacola } from "@/components/GavetaSacola";
@@ -100,6 +101,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <ModoLeve />
         <BarraRolagem />
         <Efeitos />
+        {loja.cursor === "vidro" && <CursorVidro />}
       </body>
     </html>
   );

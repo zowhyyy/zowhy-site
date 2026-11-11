@@ -9,6 +9,19 @@ export const loja = {
   dmUrl: "https://ig.me/m/zowhyknows",
   email: "zowhybrecho@gmail.com",
 
+  /**
+   * Músicas do site, tocadas pelo player oficial do SoundCloud, na ordem da lista.
+   * Só começam quando a pessoa aperta o play; quando uma acaba entra a próxima, e no fim a lista recomeça.
+   * faixaId: o número da faixa no link de incorporar do SoundCloud (api.soundcloud.com/tracks/NÚMERO).
+   */
+  musicas: [
+    { faixaId: "1733641473", titulo: "speed up", artista: "met2night", link: "https://soundcloud.com/cloudysrdy/speed-up" },
+    { faixaId: "794883727", titulo: "SAD B!TCH", artista: "CLIP", link: "https://soundcloud.com/hexgrl/sad-b-tch" },
+  ],
+
+  /** Cursor do mouse: "vidro" (bolinha de vidro que envolve os botões) ou "faca" (pixel art, o original). */
+  cursor: "faca" as "vidro" | "faca",
+
   /** Mensagens que giram na barra fina do topo do site. */
   avisos: [
     "Peças únicas: uma de cada, sem reposição",
