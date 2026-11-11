@@ -1059,8 +1059,8 @@ button:hover .sacola-icone {
   overflow: hidden;
   width: min(430px, calc(100% - 1.2rem));
   border-radius: 28px;
-  /* Quase sólido: com mais transparência, o que fica atrás (como o card do carrossel) aparecia como uma faixa cinza */
-  background: linear-gradient(160deg, rgb(255 255 255 / 0.98), rgb(252 251 250 / 0.96));
+  /* Sólido: com qualquer transparência, o que fica atrás (como o card do carrossel) aparecia como uma faixa cinza */
+  background: linear-gradient(160deg, #ffffff, #faf8f6);
   border: 1px solid rgb(255 255 255 / 0.9);
   box-shadow: 0 30px 60px -30px rgb(37 32 29 / 0.6);
   transform: translateX(calc(100% + 1rem));
@@ -1825,8 +1825,7 @@ html[data-leve] * {
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
 }
-html[data-leve] .vidro:not(.bolha),
-html[data-leve] .gaveta-painel {
+html[data-leve] .vidro:not(.bolha) {
   background: rgb(255 255 255 / 0.93);
 }
 html[data-leve] .vidro-escuro {
