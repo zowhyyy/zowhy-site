@@ -12,7 +12,7 @@ const arquivo = (caminho: string) => readFile(path.join(process.cwd(), caminho))
 /** Imagem que aparece quando o link do site é compartilhado (WhatsApp, Instagram e afins). Usa as fontes do site (src/fontes). */
 export default async function ImagemCompartilhar() {
   const [logo, syncopate, instrument] = await Promise.all([
-    arquivo("public/logo.svg"),
+    arquivo("public/icone.svg"),
     arquivo("src/fontes/syncopate-700.woff"),
     arquivo("src/fontes/instrument-serif-italic.woff"),
   ]);
@@ -34,7 +34,7 @@ export default async function ImagemCompartilhar() {
     >
       <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`data:image/svg+xml;base64,${logo.toString("base64")}`} width={132} height={132} alt="" />
+        <img src={`data:image/svg+xml;base64,${logo.toString("base64")}`} width={150} height={150} alt="" />
         <div style={{ display: "flex", fontFamily: "Syncopate", fontSize: 92, letterSpacing: 4 }}>{loja.nome}</div>
       </div>
       <div style={{ display: "flex", marginTop: 44, fontFamily: "Instrument Serif", fontStyle: "italic", fontSize: 92, color: "#822434" }}>

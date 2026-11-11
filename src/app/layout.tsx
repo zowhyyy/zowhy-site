@@ -40,7 +40,7 @@ const instrument = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL(urlSite),
-  title: { default: `${loja.nome} · brechó online`, template: `%s · ${loja.nome}` },
+  title: { default: `${loja.nome} — closet & finds`, template: `%s — ${loja.nome}` },
   description: "Brechó online com peças únicas: vintage, grife e básicos. Novidades em drops.",
   openGraph: { siteName: loja.nome, locale: "pt_BR", type: "website" },
   twitter: { card: "summary_large_image" },

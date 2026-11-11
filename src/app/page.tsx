@@ -102,8 +102,8 @@ export default async function Inicio() {
                           key={p.slug}
                           href={`/peca/${p.slug}`}
                           aria-label={p.nome}
-                          className={`vidro absolute z-[3] w-32 rounded-2xl p-2 transition-transform duration-500 hover:-translate-y-1.5 hover:-rotate-1 md:w-40 ${
-                            j === 0 ? "top-12 right-3" : "right-24 -bottom-10"
+                          className={`vidro absolute z-[3] w-24 rounded-2xl p-1.5 transition-transform duration-500 hover:-translate-y-1.5 hover:-rotate-1 md:w-40 md:p-2 ${
+                            j === 0 ? "top-3 right-3 md:top-12" : "bottom-3 left-3 md:right-24 md:-bottom-10 md:left-auto"
                           }`}
                         >
                           <span className="relative block aspect-square overflow-hidden rounded-xl bg-nevoa">

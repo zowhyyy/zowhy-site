@@ -1887,10 +1887,13 @@ html[data-leve] .grao::after {
   gap: 2px;
   height: 9px;
 }
+/* As barras sobem e descem com transform (leve), então animam até no modo leve */
 .equalizador i {
   width: 2px;
-  height: 3px;
+  height: 9px;
   background: var(--color-vinho);
+  transform: scaleY(0.34);
+  transform-origin: bottom;
 }
 .tocando .equalizador i {
   animation: equalizador 0.9s steps(4) infinite alternate;
@@ -1903,12 +1906,8 @@ html[data-leve] .grao::after {
 }
 @keyframes equalizador {
   to {
-    height: 9px;
+    transform: scaleY(1);
   }
-}
-html[data-leve] .tocando .equalizador i {
-  animation: none;
-  height: 6px;
 }
 
 /* Controle de volume da música: trilho fino, preenchido em vinho até o valor (--v) */

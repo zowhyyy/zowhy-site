@@ -206,7 +206,8 @@ export function CarrosselDestaques() {
                   </div>
 
                   {pecas.length > 0 && (
-                    <div className="flex flex-col gap-2 border-t border-grafite/15 pt-3.5 sm:pt-4">
+                    // No celular as peças ficam de fora para o painel não cobrir a foto; o botão leva até elas
+                    <div className="hidden flex-col gap-2 border-t border-grafite/15 pt-3.5 sm:flex sm:pt-4">
                       <p className="mono text-[0.58rem] text-[#5a5450]">Peças deste look · {pecas.length}</p>
                       <ul className="grid grid-cols-3 gap-2">
                         {pecas.map((p, j) => {
@@ -239,8 +240,8 @@ export function CarrosselDestaques() {
             );
           })}
 
-          {/* Controles de vidro: canto de baixo à esquerda (no celular, no alto) */}
-          <div className="vidro absolute top-3 left-3 z-10 flex items-center gap-1.5 rounded-full py-1.5 pr-3.5 pl-1.5 sm:top-auto sm:bottom-6 sm:left-6">
+          {/* Controles de vidro: canto de baixo à esquerda (no celular, no alto à direita, longe do rosto da foto) */}
+          <div className="vidro absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full py-1.5 pr-3.5 pl-1.5 sm:top-auto sm:right-auto sm:bottom-6 sm:left-6">
             <button type="button" onClick={() => ir(atual - 1)} className="seta-carrossel seta-clara" aria-label="Look anterior">
               <IconeAnterior className="h-5 w-5" />
             </button>
