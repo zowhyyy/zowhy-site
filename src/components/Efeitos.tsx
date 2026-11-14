@@ -35,6 +35,7 @@ export function Efeitos() {
 
     function sangue(e: PointerEvent) {
       if (e.pointerType !== "mouse" || e.button !== 0 || !mouseFino.matches) return;
+      if ((e.target as Element | null)?.closest?.(".barra-trilho")) return; // pegar a barra de rolagem não espirra sangue
 
       // A faca fica suja de sangue por um instante
       document.documentElement.classList.add("faca-suja");

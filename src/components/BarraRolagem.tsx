@@ -60,7 +60,11 @@ export function BarraRolagem() {
       if (e.button !== 0) return;
       e.preventDefault();
       arrasto = { y: e.clientY, scroll: window.scrollY };
-      p.setPointerCapture(e.pointerId);
+      // Sem setPointerCapture: prender o mouse fazia o cursor de faca sumir enquanto arrastava.
+      // O arrasto é acompanhado pela janela inteira até soltar o botão.
+      window.addEventListener("pointermove", arrastar);
+      window.addEventListener("pointerup", soltar);
+      window.addEventListener("pointercancel", soltar);
       a.classList.add("barra-arrastando");
     }
 
@@ -74,6 +78,9 @@ export function BarraRolagem() {
     function soltar() {
       arrasto = null;
       a.classList.remove("barra-arrastando");
+      window.removeEventListener("pointermove", arrastar);
+      window.removeEventListener("pointerup", soltar);
+      window.removeEventListener("pointercancel", soltar);
     }
 
     /** O topo só muda quando o layout muda; rolar a página não mexe nele. */
@@ -87,9 +94,6 @@ export function BarraRolagem() {
     window.addEventListener("scroll", aoRolar, { passive: true });
     window.addEventListener("resize", aoMudarLayout);
     p.addEventListener("pointerdown", pegar);
-    p.addEventListener("pointermove", arrastar);
-    p.addEventListener("pointerup", soltar);
-    p.addEventListener("pointercancel", soltar);
     posicionarTopo();
     atualizar();
 
@@ -98,9 +102,7 @@ export function BarraRolagem() {
       window.removeEventListener("scroll", aoRolar);
       window.removeEventListener("resize", aoMudarLayout);
       p.removeEventListener("pointerdown", pegar);
-      p.removeEventListener("pointermove", arrastar);
-      p.removeEventListener("pointerup", soltar);
-      p.removeEventListener("pointercancel", soltar);
+      soltar();
       cancelAnimationFrame(quadro);
       window.clearTimeout(timerRolando);
     };
