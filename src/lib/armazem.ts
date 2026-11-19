@@ -15,10 +15,17 @@ import type { DadosLoja } from "./tipos";
 // (VPS, Railway, Render com disco). Em hospedagem sem disco permanente, como a Vercel,
 // troque só lerDados() e salvarDados() por um banco de dados, e as fotos por um storage.
 // O resto do site não precisa mudar.
+//
+// NO RAILWAY: cada deploy recria a pasta do projeto, então o que o painel grava em
+// dados/ some. Lá existe um Volume (disco permanente) e a variável DADOS_DIR aponta
+// para ele (ex.: /data). Sem DADOS_DIR, tudo continua em dados/, como no computador.
+// Na primeira vez que o Volume está vazio, a loja parte do dados/loja.json do repositório.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const PASTA = path.join(process.cwd(), "dados");
+const PASTA_REPOSITORIO = path.join(process.cwd(), "dados");
+const PASTA = process.env.DADOS_DIR?.trim() || PASTA_REPOSITORIO;
 const ARQUIVO = path.join(PASTA, "loja.json");
+const ARQUIVO_INICIAL = path.join(PASTA_REPOSITORIO, "loja.json");
 export const PASTA_FOTOS = path.join(PASTA, "fotos");
 
 function iniciais(): DadosLoja {
@@ -38,14 +45,20 @@ function iniciais(): DadosLoja {
   };
 }
 
-async function lerDoDisco(): Promise<DadosLoja> {
+/** Lê um loja.json; devolve null se o arquivo não existir. */
+async function lerArquivo(caminho: string): Promise<Partial<DadosLoja> | null> {
   try {
-    const salvo = JSON.parse(await fs.readFile(ARQUIVO, "utf8")) as Partial<DadosLoja>;
-    return { ...iniciais(), ...salvo };
+    return JSON.parse(await fs.readFile(caminho, "utf8")) as Partial<DadosLoja>;
   } catch (e) {
-    if ((e as NodeJS.ErrnoException).code === "ENOENT") return iniciais();
+    if ((e as NodeJS.ErrnoException).code === "ENOENT") return null;
     throw e;
   }
+}
+
+async function lerDoDisco(): Promise<DadosLoja> {
+  // Volume ainda vazio: parte do loja.json do repositório (a 1ª gravação do painel o copia para o Volume)
+  const salvo = (await lerArquivo(ARQUIVO)) ?? (ARQUIVO !== ARQUIVO_INICIAL ? await lerArquivo(ARQUIVO_INICIAL) : null);
+  return { ...iniciais(), ...salvo };
 }
 
 /** Dados da loja. Lido uma vez por visita de página. */
