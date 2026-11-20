@@ -1534,18 +1534,18 @@ button:hover .sacola-icone {
     transform: translate(-50%, -46%) scale(0.96);
   }
 }
+/* Celular: card no meio da tela, um pouco mais estreito, subindo de leve ao aparecer */
 @media (max-width: 767px) {
   .popup {
-    top: auto;
-    bottom: 0.5rem;
-    transform: translateX(-50%);
-    width: calc(100% - 1rem);
+    width: calc(100% - 2.5rem);
+    max-width: 26rem;
+    max-height: calc(100dvh - 3rem);
     animation-name: popup-sobe;
   }
   @keyframes popup-sobe {
     from {
       opacity: 0;
-      transform: translate(-50%, 60px);
+      transform: translate(-50%, calc(-50% + 40px));
     }
   }
 }

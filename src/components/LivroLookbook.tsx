@@ -18,7 +18,7 @@ function IconeAmpliar({ className }: { className?: string }) {
   );
 }
 
-type Pagina = PaginaLookbook & { produtos: Produto[] };
+export type Pagina = PaginaLookbook & { produtos: Produto[] };
 
 const dois = (n: number) => String(n).padStart(2, "0");
 const DURACAO = 1000; // tempo de virar uma folha (ms), igual ao CSS .folha
@@ -224,7 +224,7 @@ function Contracapa() {
 // ── Foto inteira ──────────────────────────────────────────────────
 
 /** Abre a foto do look sem corte, em tela cheia, com setas para passar entre os looks. */
-function FotoInteira({
+export function FotoInteira({
   paginas,
   indice,
   mudar,

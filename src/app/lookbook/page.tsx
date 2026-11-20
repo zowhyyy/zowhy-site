@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LivroLookbook } from "@/components/LivroLookbook";
+import { LookbookCelular } from "@/components/LookbookCelular";
 import { lerDados } from "@/lib/armazem";
 import type { Produto } from "@/lib/tipos";
 
@@ -27,10 +28,17 @@ export default async function Lookbook() {
           </h1>
         </div>
         <p className="entrar max-w-xs text-suave" style={{ "--i": 2 } as React.CSSProperties}>
-          Clique na página, arraste ou use as setas para virar. As peças de cada look estão do lado da foto.
+          <span className="max-md:hidden">Clique na página, arraste ou use as setas para virar. As peças de cada look estão do lado da foto.</span>
+          <span className="md:hidden">Role para ver cada look. Toque na foto para ver em tela cheia.</span>
         </p>
       </header>
-      <LivroLookbook paginas={paginas} />
+      {/* Computador: o livro que vira as páginas. Celular: carrossel de cards, como stories. */}
+      <div className="max-md:hidden">
+        <LivroLookbook paginas={paginas} />
+      </div>
+      <div className="md:hidden">
+        <LookbookCelular paginas={paginas} />
+      </div>
     </div>
   );
 }
