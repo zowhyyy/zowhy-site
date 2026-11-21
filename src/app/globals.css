@@ -1404,6 +1404,29 @@ button:hover .sacola-icone {
 .aviso-cookies {
   animation: cookies-subir 0.5s var(--curva) both;
 }
+/* Celular: card mais baixo, texto menor e os dois botões lado a lado */
+@media (max-width: 639px) {
+  .aviso-cookies {
+    padding: 0.95rem 1rem 1rem;
+    border-radius: 20px;
+  }
+  .aviso-cookies .aviso-cookies-texto {
+    /* !important: os utilitários do Tailwind ganham desta camada */
+    margin-top: 0.4rem !important;
+    font-size: 0.8rem !important;
+    line-height: 1.45 !important;
+  }
+  .aviso-cookies .aviso-cookies-botoes {
+    margin-top: 0.75rem !important;
+    flex-wrap: nowrap;
+  }
+  .aviso-cookies .btn {
+    flex: 1;
+    min-height: 2.5rem;
+    padding: 0 0.9rem;
+    font-size: 0.7rem;
+  }
+}
 @keyframes cookies-subir {
   from {
     opacity: 0;

@@ -41,10 +41,10 @@ export function AvisoCookies() {
         <span className="inline-block h-2 w-2 bg-vinho" aria-hidden="true" />
         Cookies
       </p>
-      <p className="mt-2.5 text-[0.92rem] leading-relaxed text-[#3f3935]">
+      <p className="aviso-cookies-texto mt-2.5 text-[0.92rem] leading-relaxed text-[#3f3935]">
         Guardamos algumas informações no seu navegador para manter a sacola e fazer o site funcionar. Nada de anúncios ou rastreamento.
       </p>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="aviso-cookies-botoes mt-4 flex flex-wrap gap-2">
         <button type="button" className="btn btn-cheio" onClick={() => escolher("todos")}>
           Aceitar
         </button>

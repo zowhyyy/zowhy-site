@@ -26,7 +26,7 @@ export function LojaFechada({ aviso }: { aviso: AvisoLoja }) {
             <sup className="mono ml-0.5 align-top text-[0.5rem] tracking-normal text-vinho">©</sup>
           </p>
           {/* Selo de vidro com o status do drop: ponto vinho pulsando e um brilho passando */}
-          <span className="selo-status vidro mono relative hidden items-center gap-2 overflow-hidden rounded-full py-1.5 pr-3.5 pl-2.5 text-[0.55rem] text-grafite sm:inline-flex" aria-hidden="true">
+          <span className="selo-status vidro mono relative inline-flex shrink-0 items-center gap-2 overflow-hidden whitespace-nowrap rounded-full py-1.5 pr-3 pl-2.5 text-[0.5rem] text-grafite sm:pr-3.5 sm:text-[0.55rem]" aria-hidden="true">
             <span className="relative grid h-2 w-2 place-items-center">
               <span className="absolute inset-0 animate-ping rounded-full bg-vinho/60" />
               <span className="h-2 w-2 rounded-full bg-vinho" />
